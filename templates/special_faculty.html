@@ -1,0 +1,160 @@
+{% extends "layout2.html" %}
+{% block content %}
+<div class="if-else">
+
+    {% if name =="success" %}
+    <h2>SuceeTrssfully Alloted Position </h2>
+    {% endif %}
+
+    {% if name =="view" %}
+    <center>
+    <h2> view special faculties </h2>
+    <h6>Department Dict</h6>
+    <h5> 'Computer Science': 1,  'Electrical' : 2,    'Civil' : 4, 'Mechanical' : 5,  'Chemical' : 6, 
+                        'student_affairs': 7 ,  'academic': 8,  'None' : 9</h5>
+    <h3> Director </h3><br> 
+    <table border = '1'>
+    <thead>
+      <tr>
+        <th>Emp_ID</th> 
+        <th>Start Date</th>  
+      </tr>
+    </thead>
+    <tbody>
+      {% for faculty in cc_faculty[0] %}
+        <tr>
+          <td> <a> {{faculty[0]}} </a> </td>  
+          <td> <a> {{faculty[1]}}</a> </td>      
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+    <h3> Deans</h3><br>
+    <table border = '1'>
+    <thead>
+      <tr>
+        <th>Emp_ID</th> 
+        <th>Start Date</th> 
+        <th>Department </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for faculty in cc_faculty[1] %}
+        <tr>
+          <td> <a> {{faculty[0]}} </a> </td>  
+          <td> <a> {{faculty[1]}}</a> </td>    
+          <td> <a> {{faculty[3]}} </a> </td>  
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+    <h3> HODS </h3><br>
+    <table border = '1'>
+    <thead>
+      <tr>
+        <th>Emp_ID</th> 
+        <th>Start Date</th> 
+        <th>Department </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for faculty in cc_faculty[2] %}
+        <tr>
+          <td> <a> {{faculty[0]}} </a> </td>  
+          <td> <a> {{faculty[1]}}</a> </td>   
+          <td> <a> {{faculty[3]}} </a> </td>   
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+    </center>
+
+    {% endif %}
+
+    {% if name == "register" %}
+
+    <h3> Choose post of faculty to assign</h3>
+    <h5><a href="/special_faculty/section1"> Head of Department </a></h5>
+    <h5><a href="/special_faculty/section2"> Dean</a></h5>
+    <h5><a href="/special_faculty/section3"> Director</a></h5>
+    {% endif %}
+
+
+
+    {% if name == "section1" %}
+
+    <h3> Choose post of faculty to assign</h3>
+    <h5><a href="/special_faculty/section1"> Head of Department </a></h5>
+    <h5><a href="/special_faculty/section2"> Dean</a></h5> <br>
+
+    <div class="container">
+        <h1>Assign HODs</h1><br>
+
+        <form action="{{ url_for('update_hod') }}" method="post">
+            department: 			
+				<select name="department" required>
+				<option value='Computer Science'>Computer Science</option>
+				<option value='Electrical'>Electrical</option>
+				<option value='Mechanical'>Mechanical</option>
+				<option value='Civil'>Civil</option>
+				<option value='Chemical'>Chemical</option>
+				<option value='none'>NA</option>
+			</select>  <br>
+            Employee id: <input type="text" placeholder="Id" name="id" value="{{
+                    request.form.id }}"><br>
+            <input class="btn btn-default" type="submit" value="Submit">
+        </form>
+    </div>
+    {% endif %}
+
+
+
+    {% if name == "section2" %}
+
+    <h3> Choose post of faculty to assign</h3>
+    <h5><a href="/special_faculty/section1"> Head of Department </a></h5>
+    <h5><a href="/special_faculty/section2"> Dean</a></h5> <br>
+
+    <div class="container">
+        <h1>Assign Deans</h1>
+        <br>
+
+        <form action="{{ url_for('update_dean') }}" method="post">
+            Section of Dean:
+            <select name="section" required>
+                <option value="student_affairs">Dean Faculty Affairs</option>
+                <option value="academic">Associate Dean Faculty Affairs</option>
+                <option value="none">NA</option>
+            </select> <br>
+            Employee id: <input type="text" placeholder="Id" name="id" value="{{
+                        request.form.id }}"><br>
+            Employee first name : <input type="text" placeholder="Firstname" name="firstname" value="{{
+                        request.form.firstname }}"><br>
+            <input class="btn btn-default" type="submit" value="Submit">
+        </form>
+    </div>
+    {% endif %}
+
+     {% if name == "section3" %}
+
+    <h3> Choose post of faculty to assign</h3>
+    <h5><a href="/special_faculty/section1"> Head of Department </a></h5>
+    <h5><a href="/special_faculty/section2"> Dean</a></h5> <br>
+
+    <div class="container">
+        <h1>Assign Director</h1>
+        <br>
+        <form action="{{ url_for('update_director') }}" method="post">
+            Employee id: <input type="text" placeholder="Id" name="id" value="{{
+                        request.form.id }}"><br>
+            Employee first name : <input type="text" placeholder="Firstname" name="firstname" value="{{
+                        request.form.firstname }}"><br>
+            <input class="btn btn-default" type="submit" value="Submit">
+        </form>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

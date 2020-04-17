@@ -1,0 +1,103 @@
+{% extends "layout2.html" %}
+
+{% block content %}
+<div class="if-else">
+
+	{% if name =="success" and name1 == "employee" %}
+
+	<div class="container">
+		<h1>Update CV</h1>
+		<br>
+		<form action="{{update_employee_cv_url}}" method="post">
+			About : <input type="text" placeholder="About" name="about_faculty" value="{{
+							request.form.about_faculty }}"><br>
+			Your Research Interests : <input type="text" placeholder="Research Interests" name="research_interests"
+				value="{{
+					request.form.research_interests }}"><br>
+			Publications : <input type="text" placeholder="Your Publications" name="publications" value="{{
+					request.form.publications }}"><br>
+			Grants : <input type="text" placeholder="Grants" name="grants" value="{{
+					request.form.grants }}"><br>
+			Awards : <input type="text" placeholder="Awards" name="awards" value="{{
+					request.form.awards }}"><br>
+			Teaching Experience : <input type="text" placeholder="Teaching Experience" name="teaching_experience" value="{{
+					request.form.teaching_experience }}"><br>
+			<input class="btn btn-default" type="submit" value="Submit">
+		</form>
+	</div>
+
+	{% endif %}
+
+	{% if name == "department" %}
+
+	<div class="container">
+		<h1>Department Registration</h1> <br>
+
+		<form action="{{ url_for('registerDepartment') }}" method="post">
+			Department Name : <input type="text" placeholder="Department Name" name="dept_name" value="{{
+						request.form.dept_name }}"><br> 
+			<input class="btn btn-default" type="submit" value="Register">
+
+		</form>
+
+		{% if error %}
+		<p class="error"><strong>Error:</strong> {{ error }}
+			{% endif %}
+	</div>
+
+	{% endif %}
+
+	{% if name == "employee" %}
+
+	<div class="container">
+		<h1>Registeration portal </h1>
+		<br>
+		<form action="{{ url_for('registerEmployee') }}" method="post"> 
+
+			Firstname : <input type="text" placeholder="Firstname" name="firstname" value="{{
+                    request.form.firstname }}"><br>
+			Lastname : <input type="text" placeholder="lastname" name="lastname" value="{{
+                    request.form.lastname }}"><br>
+			Password: <input type="password" placeholder="Password" name="password" value="{{
+                    request.form.password }}"> <br>
+			email: <input type="email" placeholder="Email" name="email" value="{{
+                    request.form.email }}"> <br>
+			start_date: <input type="date" placeholder="start_date" name="start_date" value="{{
+                    request.form.start_date }}"> <br>
+			end_date: <input type="date" placeholder="end_date" name="end_date" value="{{
+                    request.form.end_date }}"> <br>
+			
+			department: 			
+				<select name="department" required>
+				<option value='Computer Science'>Computer Science</option>
+				<option value='Electrical'>Electrical</option>
+				<option value='Mechanical'>Mechanical</option>
+				<option value='Civil'>Civil</option>
+				<option value='Chemical'>Chemical</option>
+				<option value='none'>NA</option>
+			</select> <br>
+
+			<input class="btn btn-default" type="submit" value="Register">
+		</form>
+
+		{% if error %}
+		<p class="error"><strong>Error:</strong> {{ error }}
+		{% endif %}
+	</div>
+	{% endif %}
+
+	{% if name == "employee_cv" %} 
+	{% endif %}
+
+	{% if name =="success" and name1 == None %} 
+	<h2>Suceessfully Registerated </h2> 
+	{% endif %}
+
+	{% if name =="success" and name1 == "department" %} 
+	<h2>Suceessfully Registerated </h2> 
+	{% endif %}
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+
+{% extends "layout.html" %}
+
+{% block content %}    
+    <div class="if-else"> 
+        {% if name =="success"  %}
+            <h2>Suceessfully logged  in</h2> 
+        <div  class="row">
+            <div  class="columns five card green offset-by-one" onclick="javascript:location.href='/faculty/show_list'" >
+                <span  class="fa fa-user"></span> <br>
+                <h5>View faculties profile</h5>
+            </div>
+            
+            <div  class="columns five card green offset-by-one" onclick="javascript:location.href= '{{profile_url}}'" >
+                <span  class="fa fa-user"></span> <br>
+                <h5>My profile as faculty >></h5>
+            </div>
+            {% if emp_type == 'hod' %}
+                <div  class="columns five card green offset-by-one" onclick="javascript:location.href= '{{profile_special}}'" >
+                        <span  class="fa fa-user"></span> <br>
+                        <h5>My profile as HOD >></h5>
+                </div>
+            {% endif %}
+            {% if emp_type == 'dean' %}
+                <div  class="columns five card green offset-by-one" onclick="javascript:location.href= '{{profile_special}}'" >
+                        <span  class="fa fa-user"></span> <br>
+                        <h5>My profile as Dean >></h5>
+                </div>
+            {% endif %}
+            {% if emp_type == 'director' %}
+                <div  class="columns five card green offset-by-one" onclick="javascript:location.href= '{{profile_special}}'" >
+                        <span  class="fa fa-user"></span> <br>
+                        <h5>My profile as Director >></h5>
+                </div>
+            {% endif %}
+        </div>
+
+        {% else %}   
+        <div class="container">
+            <h1>Please login as faculty</h1><br>
+
+            <form action="/verify" method="post">
+                <input type="email" placeholder="E-Mail" name="email" value="{{
+                request.form.email }}">
+                <input type="password" placeholder="Password" name="password" value="{{
+                request.form.password }}">
+                <input class="btn btn-default" type="submit" value="Login">
+            </form>
+            
+            {% if error %}
+                <p class="error"><strong>Error:</strong> {{ error }}
+            {% endif %}
+        </div>  
+        {% endif %}   
+    </div> 
+  
+{% endblock %}
+

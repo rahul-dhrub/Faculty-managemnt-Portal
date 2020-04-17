@@ -1,0 +1,31 @@
+{% extends "layout2.html" %}
+{% block content %}
+<!--slogan-->
+<h2 class="margin-top-max">Welcome!</h2>
+<p class="grey"></p>
+<h3>Faculty MANAGEMENT PORTAL </h3>
+<p></p>
+
+<div class="row">
+	<!--box 1-->
+	<div class="columns five card green offset-by-one" onclick="javascript:location.href='/admin'">
+		<span class="fa fa-user"></span> <br>
+		<h5>Admin</h5>
+	</div>
+	<!--box 2-->
+	<div class="columns five card red" onclick="javascript:location.href='/login'">
+		<span class="fa fa-graduation-cap"></span> <a href="{{url_for('login')}}"></a><br>
+		<h5> Faculty </h5>
+	</div>
+</div>
+</div>
+<br>
+<br>
+<center>
+	<div style="font-family:verdana;font-size:13px;"><br>
+		<a href="{{url_for('about')}}">about</a>
+	</div>
+</center>
+
+
+{% endblock %}

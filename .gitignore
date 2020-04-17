@@ -1,0 +1,6 @@
+.vscode
+**/*.pyc
+**/*.pyo
+Question
+config.ini 
+.env
